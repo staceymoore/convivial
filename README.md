@@ -45,6 +45,12 @@ Dependencies
 ------------
 jQuery 1.7 or newer
 
+Author Info
+-----------
+Convivial is by [Stacey Moore](http://www.staceymoore.com/)  
+GitHub: [staceymoore](https://github.com/staceymoore)  
+LinkedIn: [TheStaceyMoore](http://linkedin.com/in/thestaceymoore)
+
 Credits
 -------
 Convivial is based on [Sharrre](https://github.com/Julienh/Sharrre) by Julien Hany
