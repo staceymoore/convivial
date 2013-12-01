@@ -4,7 +4,7 @@ A jQuery Social Sharing Plugin
 
 Usage
 -----
-Example with custom analytics using Google Tag Manager
+Example with custom tracking using Google Tag Manager
 ```javascript
 $("#share").convivial({
 	share: {
@@ -47,7 +47,8 @@ jQuery 1.7 or newer
 
 Author Info
 -----------
-Convivial is by [Stacey Moore](http://www.staceymoore.com/)  
+Convivial is by Stacey Moore  
+Website: [staceymoore.com](http://www.staceymoore.com/)  
 GitHub: [staceymoore](https://github.com/staceymoore)  
 LinkedIn: [TheStaceyMoore](http://linkedin.com/in/thestaceymoore)
 
