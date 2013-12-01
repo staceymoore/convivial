@@ -5,7 +5,7 @@ A jQuery Social Sharing Plugin
 Usage
 -----
 Example with custom analytics using Google Tag Manager
-```
+```javascript
 $("#share").convivial({
 	share: {
 		facebook: true,
