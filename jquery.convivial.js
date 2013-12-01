@@ -1,6 +1,6 @@
 /*!
  *  Convivial https://github.com/staceymoore/convivial
- *  Version: beta .09
+ *  Version: beta .10
  *  Author: Stacey Moore
  *  License: MIT 
  *	Description: A jQuery social sharing plugin based on Sharrre by Julien Hany (http://sharrre.com/) 
@@ -29,7 +29,7 @@
     title: '',
     url: document.location.href,
     text: document.title,
-    urlCurl: 'convivial.php',  //PHP script for google plus count
+    urlCurl: 'convivial.php',  //PHP script for google plus and stumbleupon count
     count: {}, //counter by social network
     total: 0,  //total of sharing
     shorterTotal: true, //show total by k or M when number is too big
@@ -111,16 +111,12 @@
   /* Json URL to get count number
   ================================================== */
   urlJson = {
-    googlePlus: "",
-		//new FQL method by Sire
+    googlePlus: "", //currently no jsonp support, use php instead
 		facebook: "https://graph.facebook.com/fql?q=SELECT%20url,%20normalized_url,%20share_count,%20like_count,%20comment_count,%20total_count,commentsbox_count,%20comments_fbid,%20click_count%20FROM%20link_stat%20WHERE%20url=%27{url}%27&callback=?",
-    //old method facebook: "http://graph.facebook.com/?id={url}&callback=?",
-    //facebook : "http://api.ak.facebook.com/restserver.php?v=1.0&method=links.getStats&urls={url}&format=json"
     twitter: "http://cdn.api.twitter.com/1/urls/count.json?url={url}&callback=?",
     digg: "http://services.digg.com/2.0/story.getInfo?links={url}&type=javascript&callback=?",
     delicious: 'http://feeds.delicious.com/v2/json/urlinfo/data?url={url}&callback=?',
-    //stumbleupon: "http://www.stumbleupon.com/services/1.01/badge.getinfo?url={url}&format=jsonp&callback=?",
-    stumbleupon: "",
+    stumbleupon: "", //currently no jsonp support, use php instead
     linkedin: "http://www.linkedin.com/countserv/count/share?format=jsonp&url={url}&callback=?",
     pinterest: "http://api.pinterest.com/v1/urls/count.json?url={url}&callback=?"
   },
@@ -129,7 +125,6 @@
   loadButton = {
     googlePlus : function(self){
       var sett = self.options.buttons.googlePlus;
-      //$(self.element).find('.buttons').append('<div class="button googleplus"><g:plusone size="'+self.options.buttons.googlePlus.size+'" href="'+self.options.url+'"></g:plusone></div>');
 			if (sett.type == 'plusone') {
       	$(self.element).find('.buttons').append('<div class="button googleplus"><div class="g-plusone" data-size="'+sett.size+'" data-href="'+(sett.url !== '' ? sett.url : self.options.url)+'" data-annotation="'+sett.annotation+'"></div></div>');
 			} else if (sett.type == 'share') {
@@ -360,8 +355,11 @@
     stumbleupon: function(callback){},
     linkedin: function(callback){
       function LinkedInShare() {
-				Track.socialAction('linkedin', 'share');
-        //_gaq.push(['_trackSocial', 'linkedin', 'share']);
+				if (callback !== 'empty') {
+					callback('linkedin', 'share');
+				} else {
+					_gaq.push(['_trackSocial', 'linkedin', 'share']);
+				}
       }
     },
     pinterest: function(callback){},
