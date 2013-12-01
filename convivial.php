@@ -1,6 +1,6 @@
 <?php
   header('content-type: application/json');
-  //Sharrre by Julien Hany
+  //Based on Sharrre by Julien Hany
   $json = array('url'=>'','count'=>0);
   $json['url'] = $_GET['url'];
   $url = urlencode($_GET['url']);
