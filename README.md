@@ -4,6 +4,30 @@ A jQuery Social Sharing Plugin
 
 Usage
 -----
+Example with custom analytics using Google Tag Manager
+	$("#share").convivial({
+		share: {
+			facebook: true,
+			twitter: true,
+			googlePlus: true
+		},
+		buttons: {
+			facebook: {layout: 'box_count'},
+			twitter: {count: 'vertical'},
+			googlePlus: {size: 'tall', annotation:'bubble'}
+		},
+		enableHover: false,
+		enableCounter: false,
+		enableTracking: true,
+		customTracking: function(network, activity, target){
+			dataLayer.push({
+				'socialNetwork': network,
+				'socialActivity': activity,
+				'socialTarget': target,
+				'event':'socialEvent'
+			});
+		}
+	});
 
 Changelog
 ---------
