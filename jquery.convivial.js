@@ -1,6 +1,6 @@
 /*!
  *  Convivial https://github.com/staceymoore/convivial
- *  Version: beta .10
+ *  Version: beta .11
  *  Author: Stacey Moore
  *  License: MIT 
  *	Description: A jQuery social sharing plugin based on Sharrre by Julien Hany (http://sharrre.com/) 
@@ -29,14 +29,15 @@
     title: '',
     url: document.location.href,
     text: document.title,
-    urlCurl: 'convivial.php',  //PHP script for google plus and stumbleupon count
+    urlCurl: 'convivial.php',  //PHP script for google plus and stumbleupon count. Set to '' if you don't want to use it.
     count: {}, //counter by social network
     total: 0,  //total of sharing
+		sharedCount: false, //use the SharedCount API to get count numbers (up to 100k requests per day)
     shorterTotal: true, //show total by k or M when number is too big
     enableHover: true, //disable if you want to personalize hover event with callback
     enableCounter: true, //disable if you just want use buttons
-    enableTracking: false, //tracking with standard google analitycs
-		customTracking: function(){}, //enter the name of your callback function, without ()
+    enableTracking: false, //tracking with standard google analytics
+		customTracking: function(){}, //personalize tracking with this callback function
     hover: function(){}, //personalize hover event with this callback function
     hide: function(){}, //personalize hide event with this callback function
     click: function(){}, //personalize click event with this callback function
@@ -328,7 +329,7 @@
       },1000);
     },
     twitter: function(callback){
-      console.log('twitter');
+      //console.log('twitter');
       tw = window.setInterval(function(){
         if (typeof twttr !== 'undefined') {
           twttr.events.bind('tweet', function(event) {
@@ -415,6 +416,7 @@
   ================================================== */
   Plugin.prototype.init = function () {
     var self = this;
+		//TO DO add option for a single php script that returns all counts
     if(this.options.urlCurl !== ''){
       urlJson.googlePlus = this.options.urlCurl + '?url={url}&type=googlePlus'; // PHP script for GooglePlus...
       urlJson.stumbleupon = this.options.urlCurl + '?url={url}&type=stumbleupon'; // PHP script for Stumbleupon...
@@ -441,15 +443,93 @@
     
     if(self.options.enableCounter === true){  //if for some reason you don't need counter
       //get count of social share that have been selected
-      $.each(this.options.share, function(name, val) {
-        if(val === true){
-          //self.getSocialJson(name);
-          try {
-            self.getSocialJson(name);
-          } catch(e){
-          }
-        }
-      });
+			var sharedCount = '';
+			if(self.options.sharedCount === true) {
+				//function to call the SharedCount API
+				getSharedCount = function(url, fn) {
+				url = encodeURIComponent(url || location.href); 
+				var arg = {
+					url: "//" + (location.protocol == "https:" ? "sharedcount.appspot" : "api.sharedcount") + ".com/?url=" + url,
+					cache: true,
+					dataType: "json",
+					async: false
+				};
+				if ('withCredentials' in new XMLHttpRequest) {
+					arg.success = fn;
+				}
+				else {
+					var cb = "sc_" + url.replace(/\W/g, '');
+					window[cb] = fn;
+					arg.jsonpCallback = cb;
+					arg.dataType += "p";
+				}
+				return $.ajax(arg);
+				};
+				
+				var url = encodeURIComponent(self.options.url); //TO DO add support for buttons with custom urls
+				/*if(self.options.buttons[name].urlCount === true && self.options.buttons[name].url !== ''){
+					url =  encodeURIComponent(self.options.buttons[name].url);
+				}*/
+
+				//call the API
+				getSharedCount(url, function(data){
+					sharedCount = data;
+				});
+				//console.log('COUNT: sharedCount = '+sharedCount)
+				//process the result
+				$.each(this.options.share, function(name, val) { 
+					if(val === true){
+						var key = '';
+						try {
+							switch(name)
+							{
+							case 'twitter':
+								key = 'Twitter'
+								break;
+							case 'reddit':
+								key = 'Reddit'
+								break;
+							case 'digg':
+								key = 'Diggs'
+								break;
+							case 'googlePlus':
+								key = 'GooglePlusOne'
+								break;
+							case 'delicious':
+								key = 'Delicious'
+								break;
+							case 'stumbleupon':
+								key = 'StumbleUpon'
+								break;
+							case 'pinterest':
+								key = 'Pinterest'
+								break;
+							}
+							//console.log('COUNT: val = '+ val + ', name = '+ name)
+							//console.log('COUNT: sharedCount[name] = '+ sharedCount[key])
+							if (name == 'facebook') {
+								self.options.count[name] = sharedCount.Facebook.total_count;
+								self.options.total += sharedCount.Facebook.total_count;
+							} else {
+								self.options.count[name] = sharedCount[key];
+								self.options.total += sharedCount[key];
+							}
+							//self.getSocialJson(name);
+						} catch(e) {
+							//console.log('COUNT: e = ' + e);
+						}
+					}
+				});
+			}
+			$.each(this.options.share, function(name, val) {
+				if(val === true){
+					try {
+						self.getSocialJson(name);
+					} catch(e) {
+						//console.log('COUNT: e = ' + e);
+					}
+				}
+			});
     }
     else if(self.options.template !== ''){  //for personalized button (with template)
       this.options.render(this, this.options);
@@ -498,15 +578,15 @@
   /* getSocialJson methode
   ================================================== */
   Plugin.prototype.getSocialJson = function (name) {
-    var self = this,
-    count = 0,
+    var self = this;
+    count = 0;
     url = urlJson[name].replace('{url}', encodeURIComponent(this.options.url));
     if(this.options.buttons[name].urlCount === true && this.options.buttons[name].url !== ''){
       url = urlJson[name].replace('{url}', this.options.buttons[name].url);
     }
     //console.log('name : ' + name + ' - url : '+url); //debug
-    if(url != '' && self.options.urlCurl !== ''){  //urlCurl = '' if you don't want to used PHP script but used social button
-      $.getJSON(url, function(json){
+    if(url != '' && self.options.urlCurl !== '' && self.options.sharedCount !== true){ 
+			$.getJSON(url, function(json){
         if(typeof json.count !== "undefined"){  //GooglePlus, Stumbleupon, Twitter, Pinterest and Digg
           var temp = json.count + '';
           temp = temp.replace('\u00c2\u00a0', '');  //remove google plus special chars
@@ -525,6 +605,7 @@
         self.options.total += count;
         self.renderer();
         self.rendererPerso();
+				self.options.total = 0;
         //console.log(json); //debug
       })
       .error(function() { 
@@ -534,6 +615,7 @@
     }
     else{
       self.renderer();
+			//console.log('COUNT: self.options.count[name] = '+ self.options.count[name]);
       self.options.count[name] = 0;
       self.rendererPerso();
     }
