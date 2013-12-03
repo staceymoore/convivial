@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Convivial by staceymoore</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Convivial</h1>
+        <h2>A jQuery Social Sharing Plugin</h2>
+        <a href="https://github.com/staceymoore/convivial" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a name="convivial" class="anchor" href="#convivial"><span class="octicon octicon-link"></span></a>Convivial</h1>
+
+<p>A jQuery Social Sharing Plugin</p>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Example with custom tracking using Google Tag Manager</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">$</span><span class="p">(</span><span class="s2">"#share"</span><span class="p">).</span><span class="nx">convivial</span><span class="p">({</span>
+    <span class="nx">share</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">facebook</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">twitter</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">googlePlus</span><span class="o">:</span> <span class="kc">true</span>
+    <span class="p">},</span>
+    <span class="nx">buttons</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">facebook</span><span class="o">:</span> <span class="p">{</span><span class="nx">layout</span><span class="o">:</span> <span class="s1">'box_count'</span><span class="p">},</span>
+        <span class="nx">twitter</span><span class="o">:</span> <span class="p">{</span><span class="nx">count</span><span class="o">:</span> <span class="s1">'vertical'</span><span class="p">},</span>
+        <span class="nx">googlePlus</span><span class="o">:</span> <span class="p">{</span><span class="nx">size</span><span class="o">:</span> <span class="s1">'tall'</span><span class="p">,</span> <span class="nx">annotation</span><span class="o">:</span><span class="s1">'bubble'</span><span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nx">enableHover</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nx">enableCounter</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nx">enableTracking</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nx">customTracking</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">network</span><span class="p">,</span> <span class="nx">activity</span><span class="p">,</span> <span class="nx">target</span><span class="p">){</span>
+        <span class="nx">dataLayer</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+            <span class="s1">'socialNetwork'</span><span class="o">:</span> <span class="nx">network</span><span class="p">,</span>
+            <span class="s1">'socialActivity'</span><span class="o">:</span> <span class="nx">activity</span><span class="p">,</span>
+            <span class="s1">'socialTarget'</span><span class="o">:</span> <span class="nx">target</span><span class="p">,</span>
+            <span class="s1">'event'</span><span class="o">:</span><span class="s1">'socialEvent'</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+
+<h2>
+<a name="changelog" class="anchor" href="#changelog"><span class="octicon octicon-link"></span></a>Changelog</h2>
+
+<p>Added support for the <a href="http://www.sharedcount.com/documentation.php">SharedCount</a> API<br>
+Added support for custom analytics callback, e.g. Google Tag Manager<br>
+Added support for Facebook App ID<br>
+Added support for Google share button<br>
+Added support for Facebook share button<br>
+Added support for Tumblr share button<br>
+Added support to initialize buttons when loading new AJAX content<br>
+Forked Sharrre v1.3.5</p>
+
+<h2>
+<a name="dependencies" class="anchor" href="#dependencies"><span class="octicon octicon-link"></span></a>Dependencies</h2>
+
+<p>jQuery 1.7 or newer</p>
+
+<h2>
+<a name="author-info" class="anchor" href="#author-info"><span class="octicon octicon-link"></span></a>Author Info</h2>
+
+<p>Convivial is by Stacey Moore<br>
+Website: <a href="http://www.staceymoore.com/">staceymoore.com</a><br>
+GitHub: <a href="https://github.com/staceymoore">staceymoore</a><br>
+LinkedIn: <a href="http://linkedin.com/in/thestaceymoore">TheStaceyMoore</a></p>
+
+<h2>
+<a name="credits" class="anchor" href="#credits"><span class="octicon octicon-link"></span></a>Credits</h2>
+
+<p>Convivial is based on <a href="https://github.com/Julienh/Sharrre">Sharrre</a> by Julien Hany</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/staceymoore/convivial/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/staceymoore/convivial/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/staceymoore/convivial"></a> is maintained by <a href="https://github.com/staceymoore">staceymoore</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
