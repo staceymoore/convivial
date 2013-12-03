@@ -1,6 +1,6 @@
 /*!
  *  Convivial https://github.com/staceymoore/convivial
- *  Version: beta .11
+ *  Version: v0.11-beta
  *  Author: Stacey Moore
  *  License: MIT 
  *	Description: A jQuery social sharing plugin based on Sharrre by Julien Hany (http://sharrre.com/) 
