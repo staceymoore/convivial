@@ -33,14 +33,15 @@ $("#share").convivial({
 
 Changelog
 ---------
-Added support for the [SharedCount](http://www.sharedcount.com/documentation.php) API  
-Added support for custom analytics callback, e.g. Google Tag Manager  
-Added support for Facebook App ID  
-Added support for Google share button  
-Added support for Facebook share button  
-Added support for Tumblr share button  
-Added support to initialize buttons when loading new AJAX content  
-Forked Sharrre v1.3.5
+#### Version 0.1.0
+* Added support for the [SharedCount](http://www.sharedcount.com/documentation.php) API
+* Added support for custom analytics callback, e.g. Google Tag Manager
+* Added support for Facebook App ID
+* Added support for Google share button
+* Added support for Facebook share button
+* Added support for Tumblr share button
+* Added support to initialize buttons when loading new AJAX content
+* Forked Sharrre v1.3.5
 
 Dependencies
 ------------
