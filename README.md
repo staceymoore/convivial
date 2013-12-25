@@ -33,6 +33,10 @@ $("#share").convivial({
 
 Changelog
 ---------
+#### Version 0.1.1
+* Adjust popup sizes
+* Add cursor pointer to tumblr button
+
 #### Version 0.1.0
 * Added support for the [SharedCount](http://www.sharedcount.com/documentation.php) API
 * Added support for custom analytics callback, e.g. Google Tag Manager
