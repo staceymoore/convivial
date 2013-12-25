@@ -46,12 +46,14 @@
       googlePlus : {  //http://www.google.com/webmasters/+1/button/
         url: '',
         urlCount: false,
-				type: 'plusone', // plusone|share 
+				type: 'plusone', // plusone|share|follow
         size: 'medium', //small|medium|standard|tall
        	lang: 'en-US',
        	annotation: 'none', //plusone: none|bubble|inline //share: inline|bubble|vertical-bubble|none
 				width: '',
-				height: '' //share only 15|20|24|60
+				height: '', //share only 15|20|24|60 //follow only 15|20|24
+        pageID: '', //follow only
+        relationship: 'author' //follow only author|publisher
       },
       facebook: { //https://developers.facebook.com/docs/plugins/like-button/ https://developers.facebook.com/docs/plugins/share-button/
         url: '',
@@ -67,7 +69,7 @@
         lang: 'en_US',
 				appID: ''
       },
-      twitter: {  //http://twitter.com/about/resources/tweetbutton
+      twitter: {  //tweet: https://dev.twitter.com/docs/tweet-button //follow: https://dev.twitter.com/docs/follow-button
         url: '',
         urlCount: false,  
         type: 'tweet',  //button type to render: tweet|follow
@@ -76,9 +78,9 @@
         via: '',
         related: '',
         lang: 'en',
-        followName: '',
-        showFollowName: false,
-        showFollowCount: false
+        followName: '', //follow only
+        showFollowName: false, //follow only
+        showFollowCount: false //follow only
       },
       digg: { //http://about.digg.com/downloads/button/smart
         url: '',
@@ -133,8 +135,10 @@
 			if (sett.type == 'plusone') {
       	$(self.element).find('.buttons').append('<div class="button googleplus"><div class="g-plusone" data-size="'+sett.size+'" data-href="'+(sett.url !== '' ? sett.url : self.options.url)+'" data-annotation="'+sett.annotation+'"></div></div>');
 			} else if (sett.type == 'share') {
-			$(self.element).find('.buttons').append('<div class="button googleplus"><div class="g-plus" data-action="share" data-width="'+sett.width+'" data-height="'+sett.height+'" data-href="'+(sett.url !== '' ? sett.url : self.options.url)+'" data-annotation="'+sett.annotation+'"></div></div>');
-			}
+        $(self.element).find('.buttons').append('<div class="button googleplus"><div class="g-plus" data-action="share" data-width="'+sett.width+'" data-height="'+sett.height+'" data-href="'+(sett.url !== '' ? sett.url : self.options.url)+'" data-annotation="'+sett.annotation+'"></div></div>');
+			} else if (sett.type == 'follow') {
+        $(self.element).find('.buttons').append('<div class="button googleplus"><div class="g-follow" data-height="'+sett.height+'" data-href="https://plus.google.com/'+sett.pageID+'" data-annotation="'+sett.annotation+'" data-rel="'+sett.relationship+'"></div></div>');
+      }
       window.___gcfg = {
         lang: self.options.buttons.googlePlus.lang
       };
