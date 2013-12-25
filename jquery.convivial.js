@@ -70,11 +70,15 @@
       twitter: {  //http://twitter.com/about/resources/tweetbutton
         url: '',
         urlCount: false,  
+        type: 'tweet',  //button type to render: tweet|follow
         count: 'horizontal',
         hashtags: '',
         via: '',
         related: '',
-        lang: 'en'
+        lang: 'en',
+        followName: '',
+        showFollowName: false,
+        showFollowCount: false
       },
       digg: { //http://about.digg.com/downloads/button/smart
         url: '',
@@ -171,7 +175,11 @@
     },
     twitter : function(self){
       var sett = self.options.buttons.twitter;
-      $(self.element).find('.buttons').append('<div class="button twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-url="'+(sett.url !== '' ? sett.url : self.options.url)+'" data-count="'+sett.count+'" data-text="'+(sett.text !== '' ? sett.text : self.options.text)+'" data-via="'+sett.via+'" data-hashtags="'+sett.hashtags+'" data-related="'+sett.related+'" data-lang="'+sett.lang+'"></a></div>');
+      if (sett.type == 'tweet') {
+        $(self.element).find('.buttons').append('<div class="button twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-url="'+(sett.url !== '' ? sett.url : self.options.url)+'" data-count="'+sett.count+'" data-text="'+(sett.text !== '' ? sett.text : self.options.text)+'" data-via="'+sett.via+'" data-hashtags="'+sett.hashtags+'" data-related="'+sett.related+'" data-lang="'+sett.lang+'"></a></div>');
+      } else if (sett.type == 'follow') {
+         $(self.element).find('.buttons').append('<div class="button twitter"><a href="https://twitter.com/'+sett.followName+'" class="twitter-follow-button" data-show-count="'+sett.showFollowCount+'" data-show-screen-name="'+sett.showFollowName+'"></a></div>');
+      }
       var loading = 0;
       if(typeof twttr === 'undefined' && loading == 0){
         loading = 1;
