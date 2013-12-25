@@ -278,7 +278,7 @@
 		tumblr : function(self){
       var sett = self.options.buttons.tumblr;
       $(self.element).find('.buttons').append('<div class="button tumblr"><a href="http://www.tumblr.com/share/link?url='+(sett.url !== '' ? sett.url : self.options.url)+'&name='+sett.name+'&description='+encodeURIComponent(sett.description)+'" class="tumblr-button">Tumblr	</a></div>');
-			 $(self.element).find('.button.tumblr').css({'display':'inline-block', 'text-indent':'-9999px', 'overflow':'hidden', 'width':'63px', 'height':'20px', 'background':'url("http://platform.tumblr.com/v1/share_2.png") top left no-repeat transparent'} );
+			 $(self.element).find('.button.tumblr').css({'display':'inline-block', 'text-indent':'-9999px', 'overflow':'hidden', 'width':'63px', 'height':'20px', 'background':'url("http://platform.tumblr.com/v1/share_2.png") top left no-repeat transparent', 'cursor':'pointer'} );
 			var loading = 0;
       if(typeof Tumblr === 'undefined' && loading == 0){
         loading = 1;
