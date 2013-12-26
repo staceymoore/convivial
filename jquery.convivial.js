@@ -143,16 +143,21 @@
         lang: self.options.buttons.googlePlus.lang
       };
       var loading = 0;
-      if(typeof gapi === 'undefined' && loading == 0){
+      if(typeof gapi === 'undefined' && loading == 0 && $("#googleScript").length == 0){
         loading = 1;
         (function() {
-          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          var po = document.createElement('script');
+          po.type = 'text/javascript';
+          po.async = true;
+          po.id = 'googleScript';
           po.src = '//apis.google.com/js/plusone.js';
           var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
         })();
       }
-      else{
+      else if (typeof gapi !== 'undefined') {
+        gapi.plus.go();
         gapi.plusone.go();
+        gapi.follow.go();
       }
     },
     facebook : function(self){
