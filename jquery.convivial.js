@@ -163,9 +163,9 @@
     facebook : function(self){
       var sett = self.options.buttons.facebook;
       if (sett.type == 'share') {
-        $(self.element).find('.buttons').append('<div class="button facebook"><div id="fb-root"></div><div class="fb-share-button" data-href="'+(sett.url !== '' ? sett.url : self.options.url)+'" data-type="'+sett.layout+'" data-width="'+sett.width+'"></div></div>');
+        $(self.element).find('.buttons').append('<div class="button facebook"><div class="fb-share-button" data-href="'+(sett.url !== '' ? sett.url : self.options.url)+'" data-type="'+sett.layout+'" data-width="'+sett.width+'"></div></div>');
       } else if (sett.type == 'like') {
-        $(self.element).find('.buttons').append('<div class="button facebook"><div id="fb-root"></div><div class="fb-like" data-href="'+(sett.url !== '' ? sett.url : self.options.url)+'" data-send="'+sett.send+'" data-layout="'+sett.layout+'" data-width="'+sett.width+'" data-show-faces="'+sett.faces+'" data-action="'+sett.action+'" data-colorscheme="'+sett.colorscheme+'" data-font="'+sett.font+'" data-via="'+sett.via+'"></div></div>');
+        $(self.element).find('.buttons').append('<div class="button facebook"><div class="fb-like" data-href="'+(sett.url !== '' ? sett.url : self.options.url)+'" data-send="'+sett.send+'" data-layout="'+sett.layout+'" data-width="'+sett.width+'" data-show-faces="'+sett.faces+'" data-action="'+sett.action+'" data-colorscheme="'+sett.colorscheme+'" data-font="'+sett.font+'" data-via="'+sett.via+'"></div></div>');
       } 
       var loading = 0;
       if(typeof FB === 'undefined' && loading == 0 && $("#facebook-jssdk").length == 0){
