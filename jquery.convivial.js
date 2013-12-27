@@ -694,7 +694,7 @@
         callback ='empty';
       }
       var tracking = {
-        googlePlus: {site: 'Google', action: '+1'},
+        googlePlus: {site: 'Google', action: 'share'},
         facebook: {site: 'facebook', action: 'share'},
         twitter: {site: 'twitter', action: 'tweet'},
         digg: {site: 'digg', action: 'add'},
