@@ -1,6 +1,6 @@
 /*!
  *  Convivial https://github.com/staceymoore/convivial
- *  Version: 0.2.4
+ *  Version: 0.2.5
  *  Author: Stacey Moore
  *  License: MIT 
  *  Description: A jQuery social sharing plugin based on Sharrre by Julien Hany (http://sharrre.com/) 
@@ -42,6 +42,9 @@
     hide: function(){}, //personalize hide event with this callback function
     click: function(){}, //personalize click event with this callback function
     render: function(){}, //personalize render event with this callback function
+    hashtags: '',
+    via: '',
+    related: '',
     buttons: {  //settings for buttons
       googlePlus : {  //http://www.google.com/webmasters/+1/button/
         url: '',
@@ -110,7 +113,7 @@
       },
       tumblr: { //http://www.tumblr.com/buttons
         url: '',
-        name: document.title,
+        name: '',
         description: ''
       }
     }
@@ -395,7 +398,7 @@
       window.open("http://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent((opt.buttons.facebook.url !== '' ? opt.buttons.facebook.url : opt.url))+"&t="+opt.text+"", "", "toolbar=0, status=0, width=650, height=350");
     },
     twitter: function(opt){
-      window.open("https://twitter.com/intent/tweet?text="+encodeURIComponent(opt.text)+"&url="+encodeURIComponent((opt.buttons.twitter.url !== '' ? opt.buttons.twitter.url : opt.url))+(opt.buttons.twitter.via !== '' ? '&via='+opt.buttons.twitter.via : ''), "", "toolbar=0, status=0, width=550, height=360");
+      window.open("https://twitter.com/intent/tweet?hashtags="+encodeURIComponent((opt.buttons.twitter.hashtags !== '' ? opt.buttons.twitter.hashtags : opt.hashtags))+"&text="+encodeURIComponent(opt.text)+"&url="+encodeURIComponent((opt.buttons.twitter.url !== '' ? opt.buttons.twitter.url : opt.url))+"&via="+(opt.buttons.twitter.via !== '' ? opt.buttons.twitter.via : opt.via)+"&related="+encodeURIComponent((opt.buttons.twitter.related !== '' ? opt.buttons.twitter.related : opt.related)), "", "toolbar=0, status=0, width=550, height=360");
     },
     digg: function(opt){
       window.open("http://digg.com/tools/diggthis/submit?url="+encodeURIComponent((opt.buttons.digg.url !== '' ? opt.buttons.digg.url : opt.url))+"&title="+opt.text+"&related=true&style=true", "", "toolbar=0, status=0, width=650, height=360");
@@ -413,7 +416,7 @@
       window.open('http://pinterest.com/pin/create/button/?url='+encodeURIComponent((opt.buttons.pinterest.url !== '' ? opt.buttons.pinterest.url : opt.url))+'&media='+encodeURIComponent(opt.buttons.pinterest.media)+'&description='+opt.buttons.pinterest.description, 'pinterest', 'toolbar=no,width=700,height=300');
     },
      tumblr: function(opt){
-      window.open('http://www.tumblr.com/share/link?url='+encodeURIComponent((opt.buttons.tumblr.url !== '' ? opt.buttons.tumblr.url : opt.url))+'&name='+encodeURIComponent(opt.buttons.tumblr.name)+'&description='+opt.buttons.tumblr.description, 'tumblr', 'toolbar=no,width=700,height=500');
+      window.open('http://www.tumblr.com/share/link?url='+encodeURIComponent((opt.buttons.tumblr.url !== '' ? opt.buttons.tumblr.url : opt.url))+'&name='+encodeURIComponent((opt.buttons.tumblr.name !== '' ? opt.buttons.tumblr.name : opt.name))+'&description='+encodeURIComponent((opt.buttons.tumblr.description !== '' ? opt.buttons.tumblr.description : opt.text)), 'tumblr', 'toolbar=no,width=700,height=500');
     }
   };
 
