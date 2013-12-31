@@ -1,6 +1,6 @@
 /*!
  *  Convivial https://github.com/staceymoore/convivial
- *  Version: 0.2.5
+ *  Version: 0.2.6
  *  Author: Stacey Moore
  *  License: MIT 
  *  Description: A jQuery social sharing plugin based on Sharrre by Julien Hany (http://sharrre.com/) 
@@ -416,7 +416,7 @@
       window.open('http://pinterest.com/pin/create/button/?url='+encodeURIComponent((opt.buttons.pinterest.url !== '' ? opt.buttons.pinterest.url : opt.url))+'&media='+encodeURIComponent(opt.buttons.pinterest.media)+'&description='+opt.buttons.pinterest.description, 'pinterest', 'toolbar=no,width=700,height=300');
     },
      tumblr: function(opt){
-      window.open('http://www.tumblr.com/share/link?url='+encodeURIComponent((opt.buttons.tumblr.url !== '' ? opt.buttons.tumblr.url : opt.url))+'&name='+encodeURIComponent((opt.buttons.tumblr.name !== '' ? opt.buttons.tumblr.name : opt.name))+'&description='+encodeURIComponent((opt.buttons.tumblr.description !== '' ? opt.buttons.tumblr.description : opt.text)), 'tumblr', 'toolbar=no,width=700,height=500');
+      window.open('http://www.tumblr.com/share/link?url='+encodeURIComponent((opt.buttons.tumblr.url !== '' ? opt.buttons.tumblr.url : opt.url))+'&name='+encodeURIComponent((opt.buttons.tumblr.name !== '' ? opt.buttons.tumblr.name : opt.title))+'&description='+encodeURIComponent((opt.buttons.tumblr.description !== '' ? opt.buttons.tumblr.description : opt.text)), 'tumblr', 'toolbar=no,width=700,height=500');
     }
   };
 
