@@ -42,6 +42,11 @@
     hide: function(){}, //personalize hide event with this callback function
     click: function(){}, //personalize click event with this callback function
     render: function(){}, //personalize render event with this callback function
+    lang: {
+      twitter: 'en',
+      facebook: 'en_US',
+      googlePlus: 'en_US'
+    },
     hashtags: '',
     via: '',
     related: '',
@@ -395,10 +400,10 @@
       window.open("https://plus.google.com/share?hl="+opt.buttons.googlePlus.lang+"&url="+encodeURIComponent((opt.buttons.googlePlus.url !== '' ? opt.buttons.googlePlus.url : opt.url)), "", "toolbar=0, status=0, width=500, height=400");
     },
     facebook: function(opt){
-      window.open("http://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent((opt.buttons.facebook.url !== '' ? opt.buttons.facebook.url : opt.url))+"&t="+opt.text+"", "", "toolbar=0, status=0, width=650, height=350");
+      window.open("http://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent((opt.buttons.facebook.url !== '' ? opt.buttons.facebook.url : opt.url))+"&t="+opt.text, "", "toolbar=0, status=0, width=650, height=350");
     },
     twitter: function(opt){
-      window.open("https://twitter.com/intent/tweet?hashtags="+encodeURIComponent((opt.buttons.twitter.hashtags !== '' ? opt.buttons.twitter.hashtags : opt.hashtags))+"&text="+encodeURIComponent(opt.text)+"&url="+encodeURIComponent((opt.buttons.twitter.url !== '' ? opt.buttons.twitter.url : opt.url))+"&via="+(opt.buttons.twitter.via !== '' ? opt.buttons.twitter.via : opt.via)+"&related="+encodeURIComponent((opt.buttons.twitter.related !== '' ? opt.buttons.twitter.related : opt.related)), "", "toolbar=0, status=0, width=550, height=360");
+      window.open("https://twitter.com/intent/tweet?hashtags="+encodeURIComponent((opt.buttons.twitter.hashtags !== '' ? opt.buttons.twitter.hashtags : opt.twitter.hashtags))+"&text="+encodeURIComponent(opt.text)+"&url="+encodeURIComponent((opt.buttons.twitter.url !== '' ? opt.buttons.twitter.url : opt.url))+"&lang="+(opt.twitter.lang !== '' ? opt.twitter.lang : options.buttons.twitter.lang )+"&via="+(opt.buttons.twitter.via !== '' ? opt.buttons.twitter.via : opt.twitter.via)+"&related="+encodeURIComponent((opt.buttons.twitter.related !== '' ? opt.buttons.twitter.related : opt.twitter.related)), "", "toolbar=0, status=0, width=550, height=360");
     },
     digg: function(opt){
       window.open("http://digg.com/tools/diggthis/submit?url="+encodeURIComponent((opt.buttons.digg.url !== '' ? opt.buttons.digg.url : opt.url))+"&title="+opt.text+"&related=true&style=true", "", "toolbar=0, status=0, width=650, height=360");
