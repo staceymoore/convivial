@@ -42,11 +42,6 @@
     hide: function(){}, //personalize hide event with this callback function
     click: function(){}, //personalize click event with this callback function
     render: function(){}, //personalize render event with this callback function
-    lang: {
-      twitter: 'en',
-      facebook: 'en_US',
-      googlePlus: 'en_US'
-    },
     hashtags: '',
     via: '',
     related: '',
@@ -397,7 +392,7 @@
   ================================================== */
   popup = {
     googlePlus: function(opt){
-      window.open("https://plus.google.com/share?hl="+opt.buttons.googlePlus.lang+"&url="+encodeURIComponent((opt.buttons.googlePlus.url !== '' ? opt.buttons.googlePlus.url : opt.url)), "", "toolbar=0, status=0, width=500, height=400");
+      window.open("https://plus.google.com/share?&hl="+(opt.googlePlus.lang !== '' ? opt.googlePlus.lang : options.buttons.googlePlus.lang )+"&url="+encodeURIComponent((opt.buttons.googlePlus.url !== '' ? opt.buttons.googlePlus.url : opt.url)), "", "toolbar=0, status=0, width=500, height=400");
     },
     facebook: function(opt){
       window.open("http://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent((opt.buttons.facebook.url !== '' ? opt.buttons.facebook.url : opt.url))+"&t="+opt.text, "", "toolbar=0, status=0, width=650, height=350");
