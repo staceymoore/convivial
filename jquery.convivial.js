@@ -177,7 +177,7 @@
           var js, fjs = d.getElementsByTagName(s)[0];
           if (d.getElementById(id)) {return;}
           js = d.createElement(s); js.id = id;
-          js.src = '//connect.facebook.net/'+sett.lang+'/all.js#xfbml=1&appID='+sett.appID;
+          js.src = '//connect.facebook.net/'+sett.lang+'/all.js#xfbml=1&appId='+sett.appID;
           fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
       }
@@ -395,7 +395,7 @@
       window.open("https://plus.google.com/share?&hl="+(opt.googlePlus.lang !== '' ? opt.googlePlus.lang : options.buttons.googlePlus.lang )+"&url="+encodeURIComponent((opt.buttons.googlePlus.url !== '' ? opt.buttons.googlePlus.url : opt.url)), "", "toolbar=0, status=0, width=500, height=400");
     },
     facebook: function(opt){
-      window.open("http://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent((opt.buttons.facebook.url !== '' ? opt.buttons.facebook.url : opt.url))+"&t="+opt.text, "", "toolbar=0, status=0, width=650, height=350");
+      window.open("http://www.facebook.com/sharer/sharer.php?&app_id="+(opt.facebook.appID !== '' ? opt.facebook.appID : opt.buttons.facebook.appID )+"&u="+encodeURIComponent((opt.buttons.facebook.url !== '' ? opt.buttons.facebook.url : opt.url))+"&t="+ encodeURIComponent(opt.text), "", "toolbar=0, status=0, width=650, height=350");
     },
     twitter: function(opt){
       window.open("https://twitter.com/intent/tweet?hashtags="+encodeURIComponent((opt.buttons.twitter.hashtags !== '' ? opt.buttons.twitter.hashtags : opt.twitter.hashtags))+"&text="+encodeURIComponent(opt.text)+"&url="+encodeURIComponent((opt.buttons.twitter.url !== '' ? opt.buttons.twitter.url : opt.url))+"&lang="+(opt.twitter.lang !== '' ? opt.twitter.lang : options.buttons.twitter.lang )+"&via="+(opt.buttons.twitter.via !== '' ? opt.buttons.twitter.via : opt.twitter.via)+"&related="+encodeURIComponent((opt.buttons.twitter.related !== '' ? opt.buttons.twitter.related : opt.twitter.related)), "", "toolbar=0, status=0, width=550, height=360");
