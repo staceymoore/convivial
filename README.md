@@ -33,8 +33,14 @@ $("#share").convivial({
 
 Changelog
 ---------
+#### Version 0.3.0
+* Added Facebook app id support to popups  
+* Added language support to Twitter follow button  
+* Added language support to Twitter popups  
+* Added language support to Google+ share popups
+
 #### Version 0.2.0
-* Added support for Google+ follow button
+* Added support for Google+ follow button  
 * Added support for Twitter follow button
 
 #### Version 0.1.1
